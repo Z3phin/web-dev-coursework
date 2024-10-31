@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->string('username')->unique();
+            $table->bigInteger('xp_level')->unsigned();
             $table->timestamps();
 
 
