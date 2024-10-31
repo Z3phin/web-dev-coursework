@@ -16,6 +16,7 @@ return new class extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->string('username')->unique();
             $table->string('pronouns');
+            $table->tinyText('status');
             $table->bigInteger('xp_count')->unsigned();
             $table->enum('level', [
                 'gamer',
