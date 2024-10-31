@@ -28,8 +28,8 @@ return new class extends Migration
                 'senior',
                 'leader'
             ]);
+            $table->dateTime('last_online');
             $table->timestamps();
-
 
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')->onDelete('cascade');
