@@ -16,6 +16,14 @@ return new class extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->string('username')->unique();
             $table->bigInteger('xp_count')->unsigned();
+            $table->enum('level', [
+                'student',
+                'trainee',
+                'junior',
+                'developer',
+                'senior',
+                'leader'
+            ]);
             $table->timestamps();
 
 
