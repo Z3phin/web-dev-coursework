@@ -21,7 +21,7 @@ class AppUserFactory extends Factory
         $parentUser = User::factory()->create();
         return [
             'user_id' => $parentUser->id,
-            'username' => fake()->userName(),
+            'username' => fake()->unique->userName(),
             'pronouns' => fake()->randomElement([
                 'he\him',
                 'she\her',
