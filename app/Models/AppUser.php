@@ -15,5 +15,9 @@ class AppUser extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function commentables() : HasMany {
+        return $this->hasMany(Commentable::class);
+    } 
+
 }
 
