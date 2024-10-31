@@ -15,10 +15,14 @@ return new class extends Migration
     {
         Schema::create('commentables', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('app_user_id')->nullable();
             $table->text('body');
             $table->bigInteger('like_count')->unsigned();
             $table->bigInteger('dislike_count')->unsigned();
             $table->timestamps();
+
+            $table->foreign('app_user_id')->references('id')->on('app_users')
+                ->onUpdate('cascade')->onDelete('set null');
         });
     }
 
