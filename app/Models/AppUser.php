@@ -16,7 +16,7 @@ class AppUser extends Model
     }
 
     public function commentables() : HasMany {
-        return $this->hasMany(Commentable::class);
+        return $this->hasMany(Activity::class);
     } 
 
 }
