@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('parent_activity_id');
             $table->timestamps();
+
+            $table->foreign('parent_activity_id')->references('activity_id')->on('activities')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
