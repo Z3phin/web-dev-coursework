@@ -31,5 +31,7 @@ class AppUsersSeeder extends Seeder
         $appUser->last_online = $user->created_at;
         $appUser->save();
 
+        AppUser::factory()->count(50)->create();
+
     }
 }

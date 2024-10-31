@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,28 @@ class AppUserFactory extends Factory
      */
     public function definition(): array
     {
+        $parentUser = User::factory()->create();
         return [
-            //
+            'user_id' => $parentUser->id,
+            'username' => fake()->userName(),
+            'pronouns' => fake()->randomElement([
+                'he\him',
+                'she\her',
+                'they\them'
+            ]),
+            'status' => fake()->sentence(),
+            'about' => fake()->paragraph(),
+            'xp_count' => fake()->numberBetween(),
+            'level' => fake()->randomElement([
+                'gamer',
+                'student',
+                'trainee',
+                'junior',
+                'developer',
+                'senior',
+                'leader'
+            ]),
+            'last_online' => fake()->dateTimeBetween($parentUser->created_at, '+1 week')
         ];
     }
 }
