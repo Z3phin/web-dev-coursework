@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
             $table->foreignId('app_user_id')->nullable();
+            $table->morphs('commentable');
             $table->text('body');
             $table->bigInteger('like_count')->unsigned();
             $table->bigInteger('dislike_count')->unsigned();
