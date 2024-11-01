@@ -11,7 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('forum_members', function (Blueprint $table) {
+            $table->primary(['forum_id', 'app_user_id']);
+            $table->foreignId('forum_id');
+            $table->foreignId('app_user_id');
+            $table->dateTime('joined_at');
+
+            $table->foreign('forum_id')->references('id')->on('forums')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('app_user_id')->references('id')->on('app_users')
+                ->onUpdate('cascade')->onDelete('cascade');
+        });  
     }
 
     /**
