@@ -26,5 +26,6 @@ class PostsTableSeeder extends Seeder
         $activity->dislike_count=100;
         $activity->save();
 
+        Post::factory()->count(100)->create();
     }
 }
