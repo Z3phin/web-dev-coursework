@@ -2,7 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\AppUser;
+use App\Models\Activity;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 
@@ -21,5 +22,15 @@ class PostFactory extends Factory
         return [
             'title' => fake()->sentence()
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (Post $post) {
+            Activity::factory()->state([
+                'commentable_type'=>'App\Models\Post',
+                'commentable_id'=>$post->id
+            ])->create();
+        });
     }
 }
