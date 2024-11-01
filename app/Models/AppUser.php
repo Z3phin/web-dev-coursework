@@ -58,5 +58,16 @@ class AppUser extends Model
         );
     }
 
+    public function bannedFrom() : BelongsToMany {
+        return $this->belongsToMany(
+            Forum::class,
+            'banned_forum_users',
+            'app_user_id',
+            'forum_id',
+            'id',
+            'id'
+        );    
+    }
+
 }
 
