@@ -42,5 +42,9 @@ class AppUser extends Model
         );
     }
 
+    public function ownForums() : HasMany {
+        return $this->hasMany(Forum::class);
+    }
+
 }
 
