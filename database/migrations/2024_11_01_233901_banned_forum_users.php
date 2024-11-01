@@ -11,7 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('banned_forum_users', function(Blueprint $table) {
+            $table->primary(['forum_id', 'app_user_id']);
+            $table->foreignId('forum_id');
+            $table->foreignId('app_user_id');
+            $table->tinyText('reason');
+            $table->dateTime('banned_at');
+            $table->dateTime('banned_until')->nullable();
+
+            $table->foreign('forum_id')->references('id')->on('forums')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->foreign('app_user_id')->references('id')->on('app_users')
+                ->onUpdate('cascade')->onDelete('cascade');
+        });
     }
 
     /**
@@ -19,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('banned_forum_users');
     }
 };
