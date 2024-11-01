@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 
 class Forum extends Model
 {
@@ -12,5 +14,16 @@ class Forum extends Model
 
     public function owner() : BelongsTo {
         return $this->belongsTo(AppUser::class);
+    }
+
+    public function members() : BelongsToMany {
+        return $this->belongsToMany(
+            AppUser::class,
+            'forum_members',
+            'forum_id',
+            'app_user_id',
+            'id',
+            'id'
+        );
     }
 }

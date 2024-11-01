@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
@@ -44,6 +45,17 @@ class AppUser extends Model
 
     public function ownForums() : HasMany {
         return $this->hasMany(Forum::class);
+    }
+
+    public function memberOf() : BelongsToMany {
+        return $this->belongsToMany(
+            Forum::class,
+            'forum_members',
+            'app_user_id',
+            'forum_id',
+            'id',
+            'id'
+        );
     }
 
 }
