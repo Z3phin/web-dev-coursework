@@ -40,5 +40,7 @@ class CommentsTableSeeder extends Seeder
         $activity2->like_count=100;
         $activity2->dislike_count=10;        
         $activity2->save();
+
+        Comment::factory()->count(400)->create();
     }
 }
