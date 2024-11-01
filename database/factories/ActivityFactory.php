@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\AppUser;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,6 +18,7 @@ class ActivityFactory extends Factory
     public function definition(): array
     {
         return [
+            'app_user_id'=>fake()->numberBetween(1, AppUser::get()->count()),
             'body'=>fake()->paragraph(),
             'like_count'=>fake()->numberBetween(),
             'dislike_count'=>fake()->numberBetween(),
