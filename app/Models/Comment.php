@@ -15,6 +15,6 @@ class Comment extends Activity
     }
 
     public function parent_activity() : BelongsTo {
-        return $this->belongsTo(Activity::class, 'id', 'parent_activity_id');
+        return $this->belongsTo(Activity::class, 'parent_activity_id');
     }
 }

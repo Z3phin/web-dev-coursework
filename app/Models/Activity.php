@@ -21,6 +21,6 @@ class Activity extends Model
     }
 
     public function comments() : HasMany {
-        return $this->hasMany(Comment::class, 'parent_activity_id', 'id');
+        return $this->hasMany(Comment::class, 'parent_activity_id');
     }
 }
