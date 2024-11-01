@@ -17,7 +17,9 @@ class ActivityFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'body'=>fake()->paragraph(),
+            'like_count'=>fake()->numberBetween(),
+            'dislike_count'=>fake()->numberBetween(),
         ];
     }
 }
