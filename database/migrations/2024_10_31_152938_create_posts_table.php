@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('forum_id');
             $table->string('title');
             $table->timestamps();
+
+            $table->foreign('forum_id')->references('id')->on('forums')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
