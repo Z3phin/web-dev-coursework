@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('forum_members', function (Blueprint $table) {
+        Schema::create('forum_users', function (Blueprint $table) {
             $table->primary(['forum_id', 'app_user_id']);
             $table->foreignId('forum_id');
             $table->foreignId('app_user_id');
+            $table->enum('role', ['member', 'moderator']);
             $table->dateTime('joined_at');
 
             $table->foreign('forum_id')->references('id')->on('forums')
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('forum_members');
+        Schema::dropIfExists('forum_users');
     }
 };

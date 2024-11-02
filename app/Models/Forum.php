@@ -19,12 +19,16 @@ class Forum extends Model
     public function members() : BelongsToMany {
         return $this->belongsToMany(
             AppUser::class,
-            'forum_members',
+            'forum_users',
             'forum_id',
             'app_user_id',
             'id',
             'id'
         );
+    }
+
+    public function moderators() : BelongsToMany {
+        
     }
 
     public function bannedMembers() : BelongsToMany {
@@ -35,6 +39,6 @@ class Forum extends Model
             'app_user_id',
             'id',
             'id'
-        );
+        )
     }
 }

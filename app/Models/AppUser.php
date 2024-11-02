@@ -50,12 +50,16 @@ class AppUser extends Model
     public function memberOf() : BelongsToMany {
         return $this->belongsToMany(
             Forum::class,
-            'forum_members',
+            'forum_users',
             'app_user_id',
             'forum_id',
             'id',
             'id'
         );
+    }
+
+    public function moderatorOf() : BelongsToMany {
+        
     }
 
     public function bannedFrom() : BelongsToMany {
