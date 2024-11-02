@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use PHPUnit\Framework\Constraint\Operator;
 
 class AppUser extends Model
 {
@@ -59,7 +60,7 @@ class AppUser extends Model
     }
 
     public function moderatorOf() : BelongsToMany {
-        
+        return $this->memberOf()->wherePivot('role', '=', 'moderator');
     }
 
     public function bannedFrom() : BelongsToMany {

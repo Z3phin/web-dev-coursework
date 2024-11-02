@@ -28,7 +28,7 @@ class Forum extends Model
     }
 
     public function moderators() : BelongsToMany {
-        
+        return $this->members()->wherePivot('role', '=', 'moderator');
     }
 
     public function bannedMembers() : BelongsToMany {
@@ -39,6 +39,6 @@ class Forum extends Model
             'app_user_id',
             'id',
             'id'
-        )
+        );
     }
 }
