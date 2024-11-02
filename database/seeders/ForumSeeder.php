@@ -35,9 +35,7 @@ class ForumSeeder extends Seeder
                 $forum->members()->attach(
                     $ids[$id],
                     [
-                        'role' => fake()->randomElement(
-                            ['member', 'moderator']
-                        ),
+                        'role' => fake()->randomElement(['member', 'moderator']),
                         'joined_at' => fake()->dateTimeBetween(
                             $forum->created_at,
                             '+1 week'
