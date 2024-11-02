@@ -14,8 +14,9 @@ class AppUsersSeeder extends Seeder
      */
     public function run(): void
     {
+        // A known user / appUser used for testing
         $user = new User();
-        $user->name = "Matthew Prickett";
+        $user->name = "Matthew";
         $user->email = "Matt@email.com";
         $user->password = "password";
         $user->save();

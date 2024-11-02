@@ -14,6 +14,9 @@ class CommentsTableSeeder extends Seeder
      */
     public function run(): void
     {
+
+        // A known comment on a post used for testing
+
         $comment = new Comment;
         $comment->parent_activity_id=1; // test post with id of 1
         $comment->save();
@@ -28,6 +31,7 @@ class CommentsTableSeeder extends Seeder
         $activity->save();
 
 
+        // A known comment on a comment used for testing
         $commentOnComment = new Comment;
         $commentOnComment->parent_activity_id=$comment->activity->id;
         $commentOnComment->save();

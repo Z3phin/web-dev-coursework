@@ -13,6 +13,7 @@ class PostsTableSeeder extends Seeder
      */
     public function run(): void
     {
+        // A known post used for testing
         $post = new Post;
         $post->forum_id =1;
         $post->title = 'Test post title';

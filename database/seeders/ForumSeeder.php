@@ -15,6 +15,7 @@ class ForumSeeder extends Seeder
      */
     public function run(): void
     {
+        // A known forum used for testing
         $forum = new Forum;
 
         $forum->name='general';
@@ -23,6 +24,7 @@ class ForumSeeder extends Seeder
 
         Forum::factory()->count(20)->create();
 
+        // Add members to all the forums
         foreach (Forum::all() as $forum) {
             // Generate up to 10 random users ids to add to the forum 
             $ids = fake()->randomElements(
