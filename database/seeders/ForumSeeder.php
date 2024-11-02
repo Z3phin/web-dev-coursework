@@ -24,16 +24,29 @@ class ForumSeeder extends Seeder
         Forum::factory()->count(20)->create();
 
         foreach (Forum::all() as $forum) {
-            // Generate 10 random users ids to add to the forum 
+            // Generate up to 10 random users ids to add to the forum 
             $ids = fake()->randomElements(
                 range(1, AppUser::count()), 
                 fake()->numberBetween(0, 10)
             );
 
+            // Ensure owner is not included in member pool
+            $ids = array_diff($ids, [$forum->owner_id]);
+
+            // Generate up to 3 random user ids to be banned 
+            $bannedIDs = fake()->randomElements(
+                range(1, AppUser::count()), 
+                fake()->numberBetween(0, 3)
+            );
+
+            // Ensure generated bannedIDs are not members or owner
+            $bannedIDs = array_diff($bannedIDs, $ids, [$forum->owner_id]);
+
+
             // Add each user to the forum with a random role and random join date
-            for ($id = 0; $id < count($ids); $id++) {
+            foreach ($ids as $id) {
                 $forum->members()->attach(
-                    $ids[$id],
+                    $id,
                     [
                         'role' => fake()->randomElement(['member', 'moderator']),
                         'joined_at' => fake()->dateTimeBetween(
@@ -42,6 +55,26 @@ class ForumSeeder extends Seeder
                         )
                     ]
                     );
+            } 
+
+
+            // Add banned users to forums
+            foreach ($bannedIDs as $id) {
+
+                $bannedAt = fake()->dateTimeBetween(
+                    $forum->created_at, 
+                    '+1 year');
+
+                $bannedUntil = fake()->dateTimeBetween($bannedAt, '+2 years');
+
+                $forum->bannedMembers()->attach(
+                    $id,
+                    [
+                        'reason' => fake()->sentence(),
+                        'banned_at' => $bannedAt,
+                        'banned_until' => $bannedUntil
+                    ]
+                );
             } 
         }
         
