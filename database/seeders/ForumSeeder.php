@@ -69,7 +69,7 @@ class ForumSeeder extends Seeder
 
                 $bannedUntil = fake()->dateTimeBetween($bannedAt, '+2 years');
 
-                $forum->bannedMembers()->attach(
+                $forum->bannedUsers()->attach(
                     $id,
                     [
                         'reason' => fake()->sentence(),
