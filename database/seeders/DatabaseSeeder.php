@@ -15,9 +15,10 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call(AppUsersSeeder::class);
+        $this->call(ForumSeeder::class);
         $this->call(PostsTableSeeder::class);
         $this->call(CommentsTableSeeder::class);
-        $this->call(ForumSeeder::class);
+        
         
     }
 }
