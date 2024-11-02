@@ -8,20 +8,42 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use PHPUnit\Framework\Constraint\Operator;
 
+/**
+ * Represents an user who will use the app and has relevant attributes to it. An AppUser is related to 
+ * a User, which handles the user's sensitive information. 
+ * 
+ * An AppUser can make posts, comments, own forums, be a member of a forum, moderate a forum, be banned
+ * from forums and follow other users.
+ * 
+ */
 class AppUser extends Model
 {
     use HasFactory;
 
+    /**
+     * Returns the User model that this AppUser belongs to.
+     * 
+     * @return BelongsTo user.
+     */
     public function user() : BelongsTo {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Returns the activities that belong to this user, such as posts and comments.
+     * 
+     * @return HasMany activities.
+     */
     public function activities() : HasMany {
         return $this->hasMany(Activity::class);
     } 
 
+    /**
+     * Retuns the posts that this user has made.
+     * 
+     * @return HasManyThrough posts.
+     */
     public function posts() : HasManyThrough {
         return $this->hasManyThrough(
             Post::class,
@@ -33,6 +55,11 @@ class AppUser extends Model
         );
     }
 
+    /**
+     * Returns the comments that this user has made.
+     * 
+     * @return HasManyThrough comments.
+     */
     public function comments() : HasManyThrough {
         return $this->hasManyThrough(
             Comment::class,
@@ -44,10 +71,20 @@ class AppUser extends Model
         );
     }
 
+    /**
+     * Returns the forums that this user owns. 
+     * 
+     * @return HasMany forums.
+     */
     public function ownForums() : HasMany {
         return $this->hasMany(Forum::class);
     }
 
+    /**
+     * Returns the forums that this user is a member of.
+     * 
+     * @return BelongsToMany forums.
+     */
     public function memberOf() : BelongsToMany {
         return $this->belongsToMany(
             Forum::class,
@@ -59,10 +96,22 @@ class AppUser extends Model
         );
     }
 
+    /**
+     * Returns the forums that this user moderates. 
+     * A moderator is also a member of a forum.
+     * 
+     * @return BelongsToMany forums.
+     * 
+     */
     public function moderatorOf() : BelongsToMany {
         return $this->memberOf()->wherePivot('role', '=', 'moderator');
     }
 
+    /**
+     * Returns the forums that this user is banned from.
+     * 
+     * @return BelongsToMany forums.
+     */
     public function bannedFrom() : BelongsToMany {
         return $this->belongsToMany(
             Forum::class,
@@ -74,6 +123,11 @@ class AppUser extends Model
         );    
     }
 
+    /**
+     * Returns the users that this user follows.
+     * 
+     * @return BelongsToMany users.
+     */
     public function following() : BelongsToMany {
         return $this->belongsToMany(
             AppUser::class,
@@ -85,6 +139,11 @@ class AppUser extends Model
         );
     }
 
+    /**
+     * Returns the users that follow this user.
+     * 
+     * @return BelongsToMany users.
+     */
     public function followers() : BelongsToMany {
         return $this->belongsToMany(
             AppUser::class,
