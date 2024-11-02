@@ -19,6 +19,7 @@ class ForumSeeder extends Seeder
         $forum->description='Welcome to General. Anything can be posted here :)';
         $forum->save();
 
+        Forum::factory()->count(20)->create();
         
     }
 }
