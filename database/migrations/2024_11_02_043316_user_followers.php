@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('friends', function (Blueprint $table) {
-            $table->primary(['app_user_id', 'friend_id']);
+        Schema::create('user_followers', function (Blueprint $table) {
+            $table->primary(['app_user_id', 'follower_id']);
             $table->foreignId('app_user_id');
-            $table->foreignId('friend_id');
+            $table->foreignId('follower_id');
             
             $table->foreign('app_user_id')->references('id')->on('app_users')
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->foreign('friend_id')->references('id')->on('app_users')
+            $table->foreign('follower_id')->references('id')->on('app_users')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('friends');
+        Schema::dropIfExists('user_followers');
     }
 };
