@@ -33,5 +33,21 @@ class AppUsersSeeder extends Seeder
 
         AppUser::factory()->count(50)->create();
 
+        foreach (AppUser::all() as $user) {
+            // Generate up to 10 random users ids to add to the forum 
+            $friendIDs = fake()->randomElements(
+                range(1, AppUser::count()), 
+                fake()->numberBetween(0, 10)
+            );
+    
+            // Ensure user does not friend themselves
+            $friendIDs = array_diff($friendIDs, [$user->id]);
+
+            foreach ($friendIDs as $id) {
+
+                $user->followers()->attach($id);
+            }
+        }  
+
     }
 }
