@@ -74,5 +74,9 @@ class AppUser extends Model
         );    
     }
 
+    public function friends() : BelongsToMany {
+        return $this->belongsToMany(AppUser::class);
+    }
+
 }
 
