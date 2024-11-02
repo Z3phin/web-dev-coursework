@@ -47,6 +47,11 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Returns the AppUser that this User is paired with.
+     * 
+     * @return HasOne AppUser.
+     */
     public function appUser() : HasOne {
         return $this->hasOne(AppUser::class);
     }
