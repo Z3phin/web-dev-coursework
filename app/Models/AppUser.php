@@ -74,8 +74,26 @@ class AppUser extends Model
         );    
     }
 
-    public function friends() : BelongsToMany {
-        return $this->belongsToMany(AppUser::class);
+    public function following() : BelongsToMany {
+        return $this->belongsToMany(
+            AppUser::class,
+            'user_followers',
+            'app_user_id',
+            'follower_id',
+            'id',
+            'id'
+        );
+    }
+
+    public function followers() : BelongsToMany {
+        return $this->belongsToMany(
+            AppUser::class,
+            'user_followers',
+            'follower_id',
+            'app_user_id',
+            'id',
+            'id'
+        );
     }
 
 }
