@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
@@ -24,5 +25,9 @@ class Post extends Model
             'id',
             'id'
         );
+    }
+
+    public function forum() : BelongsTo {
+        return $this->belongsTo(Forum::class);
     }
 }

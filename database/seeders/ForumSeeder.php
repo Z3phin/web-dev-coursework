@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\AppUser;
 use App\Models\Forum;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use function Laravel\Prompts\search;
