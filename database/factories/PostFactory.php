@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Activity;
+use App\Models\Forum;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,6 +21,7 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
+            'forum_id' => fake()->numberBetween(1, Forum::count()),
             'title' => fake()->sentence()
         ];
     }

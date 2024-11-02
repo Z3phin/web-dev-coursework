@@ -14,7 +14,8 @@ class PostsTableSeeder extends Seeder
     public function run(): void
     {
         $post = new Post;
-        $post->title = "Test post title";
+        $post->forum_id =1;
+        $post->title = 'Test post title';
         $post->save();
 
         $activity = new Activity;
