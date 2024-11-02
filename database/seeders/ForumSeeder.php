@@ -7,6 +7,8 @@ use App\Models\Forum;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use function Laravel\Prompts\search;
+
 class ForumSeeder extends Seeder
 {
     /**
@@ -23,14 +25,11 @@ class ForumSeeder extends Seeder
         Forum::factory()->count(20)->create();
 
         foreach (Forum::all() as $forum) {
-            // Generate random users ids to add to the forum 
+            // Generate 10 random users ids to add to the forum 
             $ids = fake()->randomElements(
                 range(1, AppUser::count()), 
                 fake()->numberBetween(0, 10)
             );
-
-            // Ensure that the owner is not added as a member
-            $ids = array_diff($ids, [$forum->owner_id]);
 
             // Add each user to the forum with a random role and random join date
             for ($id = 0; $id < count($ids); $id++) {
