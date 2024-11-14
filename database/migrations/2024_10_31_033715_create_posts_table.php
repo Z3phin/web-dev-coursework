@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('forum_id');
             $table->string('title');
-            $table->bigInteger('view_count')->unsigned();
             $table->timestamps();
 
             $table->foreign('forum_id')->references('id')->on('forums')
