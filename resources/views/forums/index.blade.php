@@ -3,5 +3,9 @@
 @section('title', 'Forums')
 
 @section('content')
-    <p>hi</p>
+    <ul>
+        @foreach ($forums as $forum)
+            <li>{{$forum->name}}</li>
+        @endforeach
+    </ul>
 @endsection
