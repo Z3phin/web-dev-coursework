@@ -4,10 +4,8 @@
         <title>@yield('title')</title>
     </head>
     <body>
-        <header>
-            <div style="background-color: black; height=1rem">
-
-            </div>
+        <header style="background-color: black">
+            <h1 style="color: white">@yield('title')</h1>
         </header>
         <section>
             @yield('content')
