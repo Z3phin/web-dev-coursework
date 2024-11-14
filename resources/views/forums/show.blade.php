@@ -3,17 +3,19 @@
 @section('title', $forum->name)
 
 @section('content')
-    <ul>
-        @if($forum->owner_id)
-        <li>
-             {{$forum->owner->username}}       
-        </li>
-        @endif
-        <li>
-            {{$forum->description}}
-        </li>
-        <a href="{{route('forums.index')}}">Back to all forums</a>
-    </ul>
+    <section>
+        <ul>
+            @if($forum->owner_id)
+            <li>
+                 {{$forum->owner->username}}       
+            </li>
+            @endif
+            <li>
+                {{$forum->description}}
+            </li>
+            <a href="{{route('forums.index')}}">Back to all forums</a>
+        </ul>
+    </section>
     <hr>
     <section>
         <ul>
