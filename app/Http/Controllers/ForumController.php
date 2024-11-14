@@ -37,7 +37,8 @@ class ForumController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $forum = Forum::findOrFail($id);
+        return view('forums.show', ['forum' => $forum]);
     }
 
     /**

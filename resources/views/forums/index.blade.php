@@ -5,7 +5,7 @@
 @section('content')
     <ul>
         @foreach ($forums as $forum)
-            <li>{{$forum->name}}</li>
+            <li><a href="{{route('forums.show', ['id' => $forum->id])}}">{{$forum->name}}</a></li>
         @endforeach
     </ul>
 @endsection

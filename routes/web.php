@@ -8,3 +8,5 @@ Route::get('/', function () {
 });
 
 Route::get('/forums', [ForumController::class, 'index'])->name('forums.index');
+
+Route::get('/forum/{id}', [ForumController::class, 'show'])->name('forums.show');
