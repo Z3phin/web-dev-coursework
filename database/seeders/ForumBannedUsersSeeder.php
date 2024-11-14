@@ -24,7 +24,7 @@ class ForumBannedUsersSeeder extends Seeder
             );
 
             // Ensure generated bannedIDs are not members or owner
-            $bannedIDs = array_diff($bannedIDs, $forum->members(), [$forum->owner_id]);
+            $bannedIDs = array_diff($bannedIDs, $forum->members()->pluck('id')->toArray(), [$forum->owner_id]);
 
 
             // Add banned users to forums
