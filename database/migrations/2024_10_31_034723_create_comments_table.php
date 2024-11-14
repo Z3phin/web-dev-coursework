@@ -14,13 +14,10 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->morphs('commentable');
-            $table->foreignId('parent_commentable_id');
+            $table->foreignId('parent_activity_id');
             $table->timestamps();
 
-            $table->foreign('commentable_id')->references('id')->on('commentables')
-                ->onUpdate('cascade')->onDelete('cascade');
-
-            $table->foreign('parent_commentable_id')->references('id')->on('commentables')
+            $table->foreign('parent_activity_id')->references('id')->on('activities')
                 ->onUpdate('cascade')->onDelete('cascade');
 
         });

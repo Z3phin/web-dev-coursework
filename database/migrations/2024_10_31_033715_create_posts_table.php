@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('forum_id');
             $table->morphs('commentable');
             $table->string('title');
             $table->bigInteger('view_count')->unsigned();
             $table->timestamps();
 
             $table->foreign('commentable_id')->references('id')->on('commentables')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('forum_id')->references('id')->on('forums')
                 ->onUpdate('cascade')->onDelete('cascade');
 
         });
