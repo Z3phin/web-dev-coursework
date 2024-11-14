@@ -16,9 +16,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call(AppUsersSeeder::class);
         $this->call(ForumSeeder::class);
+        $this->call(ForumMemberSeeder::class);
+        $this->call(ForumBannedUsersSeeder::class);
         $this->call(PostsTableSeeder::class);
         $this->call(CommentsTableSeeder::class);
-        
         
     }
 }
