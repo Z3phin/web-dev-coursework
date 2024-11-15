@@ -40,7 +40,7 @@ class CommentsTableSeeder extends Seeder
         $activity2->app_user_id=3;
         $activity2->commentable_type="App\Models\Comment";
         $activity2->commentable_id=$commentOnComment->id;
-        $activity2->body="This is a comment\'s body";
+        $activity2->body="This is a comment's body";
         $activity2->like_count=100;
         $activity2->dislike_count=10;        
         $activity2->save();
