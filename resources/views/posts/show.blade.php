@@ -17,5 +17,17 @@
             </ul> 
         </div>   
     </section>
+    <section style='clear:both'>
+        <hr>
+        <p>Comments</p>
+
+        <ul>
+            @forelse ($post->comments as $comment)
+                <li>{{$comment->activity->body}}</li>
+            @empty
+                <p>No comments here yet. Do you have something to say?</p>
+            @endforelse
+        </ul>
+    <section>
     <span></span>
 @endsection
