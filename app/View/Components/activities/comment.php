@@ -15,7 +15,8 @@ class comment extends Component
     public function __construct(
         public string $username = 'unknown',
         public string $likes = '0',
-        public string $dislikes = '0'
+        public string $dislikes = '0',
+        public string $date = ''
     )
     {
         

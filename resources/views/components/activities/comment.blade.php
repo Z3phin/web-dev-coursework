@@ -5,10 +5,37 @@ margin: 1rem;
 background:aqua;
 height: 10rem;"
 >
-    <p><b>{{'@' . $username}}</b></p>
+    <span>
+        <span>
+            <b>{{'@' . $username}}</b>
+        </span>
+        <span>
+            {{$date}}
+        </span>
+    </span>
+    
     <p>{{$slot}}</p>
-    <span><b>Likes:</b></span>
-    <span>{{$likes}}</span>
-    <span><b>Dislikes:</b></span>
-    <span>{{$dislikes}}</span>
+
+    <button style="
+        border-radius: 5px;
+        background: lightgrey;
+        margin:0.5rem;
+        margin-right:0.25rem;
+        padding:0.5rem;
+    ">
+        <span><b>Likes:</b></span>
+        {{$likes}}
+    </button>
+
+    <button style="
+        border-radius: 5px;
+        background: lightgrey;
+        margin:0.5rem;
+        margin-left: 0.25rem;
+        padding:0.5rem;
+    ">
+        <span><b>Dislikes:</b></span>
+        {{$dislikes}}
+</button>
+    
 </div>

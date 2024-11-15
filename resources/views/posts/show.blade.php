@@ -26,6 +26,7 @@
              username="{{$comment->activity->appUser->username}}" 
              likes="{{$comment->activity->like_count}}"
              dislikes="{{$comment->activity->dislike_count}}"
+             date="{{$comment->created_at}}"
              >
                 {{$comment->activity->body}}
             </x-activities.comment>
