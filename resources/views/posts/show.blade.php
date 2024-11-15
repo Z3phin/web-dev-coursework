@@ -22,7 +22,13 @@
         <p>Comments</p>
 
         @forelse ($post->comments as $comment)
-            <x-activities.comment>{{$comment->activity->body}}</x-activities.comment>
+            <x-activities.comment
+             username="{{$comment->activity->appUser->username}}" 
+             likes="{{$comment->activity->like_count}}"
+             dislikes="{{$comment->activity->dislike_count}}"
+             >
+                {{$comment->activity->body}}
+            </x-activities.comment>
             
         @empty
             <p>No comments here yet. Do you have something to say?</p>

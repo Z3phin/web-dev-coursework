@@ -12,7 +12,11 @@ class comment extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(
+        public string $username = 'unknown',
+        public string $likes = '0',
+        public string $dislikes = '0'
+    )
     {
         
     }
