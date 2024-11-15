@@ -21,10 +21,12 @@
         <ul>
         @foreach ($forum->posts as $post)
             <li>
-                {{$post->title}}
+                <a href="{{route('post.show', ['id' => $post->id])}}">{{$post->title}}</a>
                 <ul>
                     <li>{{$post->activity->appUser->username}}</li>
                     <li>{{$post->created_at}}</li>
+                    <li>{{$post->activity->like_count}}</li>
+                    <li>{{$post->activity->dislike_count}}</li>
                 </ul>
             </li>
         @endforeach
