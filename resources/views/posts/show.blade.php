@@ -21,13 +21,13 @@
         <hr>
         <p>Comments</p>
 
-        <ul>
-            @forelse ($post->comments as $comment)
-                <li>{{$comment->activity->body}}</li>
-            @empty
-                <p>No comments here yet. Do you have something to say?</p>
-            @endforelse
-        </ul>
+        @forelse ($post->comments as $comment)
+            <x-activities.comment>{{$comment->activity->body}}</x-activities.comment>
+            
+        @empty
+            <p>No comments here yet. Do you have something to say?</p>
+        @endforelse
+    
     <section>
     <span></span>
 @endsection
