@@ -37,5 +37,5 @@ height: 10rem;"
         <span><b>Dislikes:</b></span>
         {{$dislikes}}
 </button>
-    
+
 </div>
