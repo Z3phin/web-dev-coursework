@@ -20,15 +20,16 @@
     <section>
         <ul>
         @foreach ($forum->posts as $post)
-            <li>
-                <a href="{{route('post.show', ['id' => $post->id])}}">{{$post->title}}</a>
-                <ul>
-                    <li>{{$post->activity->appUser->username}}</li>
-                    <li>{{$post->created_at}}</li>
-                    <li>{{$post->activity->like_count}}</li>
-                    <li>{{$post->activity->dislike_count}}</li>
-                </ul>
-            </li>
+            <a style="text-decoration: none; text-color: black;" href="{{route('post.show', ['id' => $post->id])}}">
+                <x-activities.post
+                title="{{$post->title}}"
+                username="{{$post->activity->appUser->username}}"
+                likes="{{$post->activity->like_count}}"
+                dislikes="{{$post->activity->dislike_count}}"
+                date="{{$post->created_at}}">
+
+                </x-activities.post>
+            </a>
         @endforeach
         </ul>
     </section>

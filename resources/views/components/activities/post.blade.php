@@ -14,6 +14,7 @@ height: 10rem;"
         </span>
     </span>
     
+    <p><b>{{$title}}</b></p>
     <p style="margin-left: 0.5rem; margin-right: 0.5rem">{{$slot}}</p>
 
     <button style="
