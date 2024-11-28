@@ -43,8 +43,8 @@
         </h2>
     </x-slot>
 
-    <section class="flex flex-row py-12">
-        <section  class="max-w-7xl mx-auto sm:px-6 lg:px-8 relative">
+    <section class="flex flex-row py-12 h-screen">
+        <section  class="w-3/4 max-w-40xl mx-auto sm:px-6 lg:px-8">
             @foreach ($forum->posts as $post)
             <div class="py-2">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -52,7 +52,7 @@
                         <p class="py-2">
                             {{'@' . $post->activity->appUser->username . ' | ' . $post->created_at }}
                         </p>
-                        <h2 class="py-4">{{$post->title}}</h2>
+                        <h2 class=" text-2xl py-4"><strong>{{$post->title}}<strong></h2>
                         <span>
                             <button class="px-2">
                                 {{$post->activity->like_count . ' likes'}}
@@ -69,15 +69,29 @@
             </div>
             @endforeach
         </section>   
-        <section class="max-w-2xl sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+        <section class=" h-screen w-1/2 max-w-2xl sm:px-6 lg:px-8 py-2">
+            <div class="bg-white dark:bg-gray-800 overflow-visible shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100 my-4">
-                    <h2>{{$forum->name}}</h2>
+                    <h2 class="text-center">{{$forum->name}}</h2>
+                    <hr>
                     @if($forum->owner)
                         <p><{{$forum->owner->username}}</p>
                     @endif
-                    <p>{{$forum->description}}</p>
-                    <p>{{$forum->members->count()}}</p>
+                    <p class="py-2">{{$forum->description}}</p>
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                                <div>{{$forum->members->count() . " members"}}</div>
+                            </button>
+                        </x-slot>
+                        <x-slot name="content">
+                            @foreach ($forum->members as $member)
+                                <x-dropdown-link :href="route('forums.index')">
+                                    {{$member->username}}
+                                </x-dropdown-link>
+                            @endforeach
+                        </x-slot>
+                    </x-dropdown>
                 </div>
             </div>
         </section>
