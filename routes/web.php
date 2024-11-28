@@ -13,7 +13,7 @@ Route::get('/forums', [ForumController::class, 'index'])->name('forums.index');
 
 Route::get('/forum/{id}', [ForumController::class, 'show'])->name('forums.show');
 
-Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
+Route::get('/post/{post}', [PostController::class, 'show'])->name('posts.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
