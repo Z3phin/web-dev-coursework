@@ -5,11 +5,11 @@
         </h2>
     </x-slot>
 
-    <section class="flex flex-row py-12 h-screen">
+    <section class="flex flex-row py-12 h-full">
         <section  class="w-3/4 max-w-40xl mx-auto sm:px-6 lg:px-8">
             @foreach ($forum->posts as $post)
             <div class="py-2">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100 my-4">
                         <p class="py-2">
                             {{'@' . $post->activity->appUser->username . ' | ' . $post->created_at }}
@@ -37,7 +37,7 @@
             </div>
             @endforeach
         </section>   
-        <section class=" h-screen w-1/2 max-w-2xl sm:px-6 lg:px-8 py-2">
+        <section class="w-1/4 h-full max-w-2xl sm:px-6 lg:px-8 py-2">
             <div class="bg-white dark:bg-gray-800 overflow-visible shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100 my-4">
                     <h2 class="text-center">{{$forum->name}}</h2>

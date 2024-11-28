@@ -1,49 +1,20 @@
-{{-- @extends ('layouts.app')
-
-@section ('title', $post->title)
-
-@section('content')
-    <section>
-        <a href="{{route('forums.show', ['id' => $post->forum_id])}}">Back to {{$post->forum->name}}</a>
-    </section>
-    <section>
-        <div style='width=0.7vw; float:left;'>
-            <p>{{$post->activity->body}}</p>
-        </div>
-        <div style='width=0.3vw; float:right;'>
-            <ul>
-                <li>{{$post->activity->appUser->username}}</li>
-                <li>{{$post->created_at}}</li>
-            </ul> 
-        </div>   
-    </section>
-    <section style='clear:both'>
-        <hr>
-        <p>Comments</p>
-
-        @forelse ($post->comments as $comment)
-            <x-activities.comment
-             username="{{$comment->activity->appUser->username}}" 
-             likes="{{$comment->activity->like_count}}"
-             dislikes="{{$comment->activity->dislike_count}}"
-             date="{{$comment->created_at}}"
-             >
-                {{$comment->activity->body}}
-            </x-activities.comment>
-            
-        @empty
-            <p>No comments here yet. Do you have something to say?</p>
-        @endforelse
-    
-    <section>
-    <span></span>
-@endsection --}}
-
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{$post->title}}
-        </h2>
+        <div class="text-gray-800 dark:text-gray-200">
+            <div>
+                <a href="{{route('forums.show', ['id' => $post->forum_id])}}">{{'← ' . $post->forum->name}}</a>
+            </div>
+            <div>
+                <a href="{{route('forums.show', ['id' => $post->forum_id])}}" 
+                    >
+                    {{'@' . $post->activity->appUser->username}}
+                </a>
+                <span>{{' |' . $post->created_at}}</span>
+            </div>
+            <h2 class="py-2 font-semibold text-xl text-gray-800 dark:text-gray-200">
+                {{$post->title}}
+            </h2>
+        </div>
     </x-slot>
 
     <div class="py-12">
@@ -52,7 +23,54 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{$post->activity->body}}
                 </div>
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <span>
+                        <button class="px-2">
+                            {{$post->activity->like_count . ' likes'}}
+                        </button>
+                        <button class="px-2">
+                            {{$post->activity->dislike_count . ' dislikes'}}
+                        </button>
+                        <button class="px-2">
+                            {{$post->activity->comments->count() . ' comments'}}
+                        </button>
+                    </span>
+                </div>
             </div>
         </div>
+
+        <div class="py-4 max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <hr>
+        </div>
+    
+        @forelse($post->comments as $comment)
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-4">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900 dark:text-gray-100 m-4">
+                        <p class="py-2">
+                            {{'@' . $comment->activity->appUser->username . ' | ' . $post->created_at }}
+                        </p>
+                        <p>
+                            {{$comment->activity->body}}
+                        </p>    
+                        <span>
+                            <button class="px-2">
+                                {{$comment->activity->like_count . ' likes'}}
+                            </button>
+                            <button class="px-2">
+                                {{$comment->activity->dislike_count . ' dislikes'}}
+                            </button>
+                            <button class="px-2">
+                                {{$comment->activity->comments->count() . ' comments'}}
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <p>No comments here yet. Do you have something to say?</p>
+        @endforelse
     </div>
+
+    
 </x-app-layout>
