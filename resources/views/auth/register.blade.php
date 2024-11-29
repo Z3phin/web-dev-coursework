@@ -9,10 +9,50 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
+        <!-- Username -->
+        <div class="mt-4">
+            <x-input-label for="username" :value="__('Username')" />
+            <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" />
+            <x-input-error :messages="$errors->get('username')" class="mt-2" />
+        </div>
+
+        <!-- Pronouns -->
+        <div class="mt-4">
+            <x-input-label for="pronouns" :value="__('Pronouns')" />
+
+            <x-select name="pronouns" id="pronouns" class="block mt-1 w-full" :value="old('pronouns')" autofocus>
+                <option value="unselected" selected hidden disabled>Choose here</option>
+                <option value="he/him">He/Him</option>
+                <option value="she/her">She/Her</option>
+                <option value="they/them">They/Them</option>
+                <option value="withheld">Prefer not to say</option>
+            </x-select>
+
+            <x-input-error :messages="$errors->get('pronouns')" class="mt-2" />
+        </div>
+
+        <!-- Level -->
+
+        <div class="mt-4">
+            <x-input-label for="level" :value="__('Level')"/>
+            <x-select name="level" id="level" class="block mt-1 w-full" :value="old('level')" autofocus>
+                <option value="unselected" selected hidden disabled>Choose here</option>
+                <option value="gamer">Gamer</option>
+                <option value="student">Student</option>
+                <option value="trainee">Trainee</option>
+                <option value="junior">Junior</option>
+                <option value="developer">Developer</option>
+                <option value="senior">Senior</option>
+                <option value="leader">Leader</option>
+            </x-select>
+
+            <x-input-error :messages="$errors->get('level')" class="mt-2" />
+        </div>
+
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="email" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -44,6 +84,7 @@
                 {{ __('Already registered?') }}
             </a>
 
+            <!-- Submit -->
             <x-primary-button class="ms-4">
                 {{ __('Register') }}
             </x-primary-button>
