@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\PostController;
@@ -14,6 +15,8 @@ Route::get('/forums', [ForumController::class, 'index'])->name('forums.index');
 Route::get('/forum/{id}', [ForumController::class, 'show'])->name('forums.show');
 
 Route::get('/post/{post}', [PostController::class, 'show'])->name('posts.show');
+
+Route::post('/comment', [CommentController::class, 'store'])->middleware('auth')->name('comment');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

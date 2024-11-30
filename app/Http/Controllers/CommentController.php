@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
+use App\Models\Comment;
+use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -27,7 +31,26 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'body' => 'required',
+            'activity_id' => 'required|exists:activities,id'
+        ]);
+
+        $comment = new Comment();
+        $comment->parent_activity_id = $request->activity_id;
+        $comment->save();
+
+        $activity = new Activity();
+        $activity->app_user_id = $request->user()->appUser->id;
+        $activity->commentable_type = "App\Models\Comment";
+        $activity->commentable_id = $comment->id;
+        $activity->body = $request->body;
+        $activity->like_count = 0;
+        $activity->dislike_count = 0;
+        $activity->save();
+
+        // temporary solution
+        return redirect(route('posts.show', ['post' => Post::findOrFail($request->activity_id)]));
     }
 
     /**

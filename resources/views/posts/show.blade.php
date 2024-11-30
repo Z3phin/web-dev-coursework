@@ -42,7 +42,33 @@
         <div class="py-4 max-w-7xl mx-auto sm:px-6 lg:px-8">
             <hr>
         </div>
-    
+
+        @auth
+        <div>
+
+            <!-- Adding a Comment -->
+            <form method="POST" action="{{route('comment')}}">
+                @csrf
+                <div>
+                    <input type="hidden" id="activity_id" name="activity_id" value="{{$post->activity->id}}" >
+                    <x-input-label for="body" :value="__('Comment')"/>
+                    <x-text-input id="body" name="body" class="block mt-1 w-full" :value="old('body')" autofocus/>
+                </div>
+
+                <div>
+                    <x-primary-button class="ms-4">
+                        {{ __('Post') }}
+                    </x-primary-button>
+                </div>
+                
+            </form>
+        </div>
+        @else
+        <div class="text-gray-900 dark:text-gray-100 m-4">
+            <a href="{{route('login')}}">Sign in to comment on this post.</a>
+        </div>
+        @endauth
+
         @forelse($post->comments as $comment)
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-4">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
