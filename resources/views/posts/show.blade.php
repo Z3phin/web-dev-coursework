@@ -44,7 +44,7 @@
         </div>
 
         @auth
-        <div>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-4">
 
             <!-- Adding a Comment -->
             <form method="POST" action="{{route('comment')}}">
@@ -56,7 +56,7 @@
                 </div>
 
                 <div>
-                    <x-primary-button class="ms-4">
+                    <x-primary-button class="py-2">
                         {{ __('Post') }}
                     </x-primary-button>
                 </div>
@@ -69,7 +69,10 @@
         </div>
         @endauth
 
-        @forelse($post->comments as $comment)
+        @php
+            $comments = $post->comments->load('activity.appUser');
+        @endphp
+        @forelse($comments as $comment)
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-4">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100 m-4">
