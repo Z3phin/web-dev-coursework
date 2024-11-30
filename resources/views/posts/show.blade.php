@@ -56,8 +56,8 @@
 
                 </div>
 
-                <div>
-                    <x-primary-button class="py-2">
+                <div class="py-2">
+                    <x-primary-button >
                         {{ __('Post') }}
                     </x-primary-button>
                 </div>
