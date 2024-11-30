@@ -18,6 +18,8 @@
         </h2>
     </x-slot>
 
+    @livewire('counter')
+
     @foreach ($forums as $forum)
     <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 " >
@@ -27,7 +29,7 @@
                shadow-sm 
                sm:rounded-lg" >
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <a href="{{route('forums.show', ['id' => $forum->id])}}">
+                    <a href="{{route('forums.show', ['forum' => $forum])}}">
                        <strong> {{$forum->name}} </strong>
                     </a>
                     <p class="py-1">{{$forum->description}}</p>
