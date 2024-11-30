@@ -12,7 +12,7 @@ Route::get('/', function () {
 
 Route::get('/forums', [ForumController::class, 'index'])->name('forums.index');
 
-Route::get('/forum/{id}', [ForumController::class, 'show'])->name('forums.show');
+Route::get('/forum/{forum}', [ForumController::class, 'show'])->name('forums.show');
 
 Route::get('/post/{post}', [PostController::class, 'show'])->name('posts.show');
 

@@ -35,9 +35,9 @@ class ForumController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Forum $forum)
     {
-        $forum = Forum::findOrFail($id);
+        // $forum = Forum::findOrFail($id);
         return view('forums.show', ['forum' => $forum]);
     }
 
