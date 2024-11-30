@@ -7,7 +7,10 @@
 
     <section class="flex flex-row py-12 h-full">
         <section  class="w-3/4 max-w-40xl mx-auto sm:px-6 lg:px-8">
-            @foreach ($forum->posts as $post)
+            @php
+                $posts = $forum->posts->load('activity.appUser');
+            @endphp
+            @foreach ($posts as $post)
             <div class="py-2">
                 <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100 my-4">
