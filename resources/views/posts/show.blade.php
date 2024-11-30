@@ -52,7 +52,8 @@
                 <div>
                     <input type="hidden" id="activity_id" name="activity_id" value="{{$post->activity->id}}" >
                     <x-input-label for="body" :value="__('Comment')"/>
-                    <x-text-input id="body" name="body" class="block mt-1 w-full" :value="old('body')" autofocus/>
+                    <x-text-area id="body" name="body" cols="1" rows="1" class="block mt-1 w-full" :value="old('body')" autofocus/>
+
                 </div>
 
                 <div>
