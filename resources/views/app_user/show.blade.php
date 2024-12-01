@@ -1,34 +1,32 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __($appUser->username) }}
-        </h2>
-        <p>{{$appUser->status}}</p>
+        <div class="text-gray-800 dark:text-gray-200">
+            <h2 class="font-semibold text-xl leading-tight">
+                {{ __("Welcome to " . $appUser->username .  "'s page") }}
+            </h2>
+        </div>
     </x-slot>
 
     <div class="w-screen py-12 flex">
-        <div class="w-full min-w-2xl max-w-7xl mx-6 flex-auto">
+
+        <!-- Activity Feed --> 
+
+        <div class="w-3/4 max-w-7xl mx-6 flex-auto">
             <div class="mx-6 px-6">
+                
+                <!-- Navigation --> 
+                
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        {{ __("Welcome to " . $appUser->username .  "'s page") }}
-                    </div>
-                </div>
-    
-                <!-- Activity Feed --> 
-                
-                <div class="mt-4 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
                         <section>
-                            <h1>Activity Feed</h1>
                             <nav>
-                                <x-nav-link :href="route('appUser.show', ['appUser' => $appUser])" :active="request()->routeIs('appUser.show')">
+                                <x-nav-link class="text-xl" :href="route('appUser.show', ['appUser' => $appUser])" :active="request()->routeIs('appUser.show')">
                                     {{ __('Overview') }}
                                 </x-nav-link>
-                                <x-nav-link :href="route('appUser.show.posts', ['appUser' => $appUser])" :active="request()->routeIs('appUser.show.posts')">
+                                <x-nav-link class="text-xl" :href="route('appUser.show.posts', ['appUser' => $appUser])" :active="request()->routeIs('appUser.show.posts')">
                                     {{ __('Posts') }}
                                 </x-nav-link>
-                                <x-nav-link :href="route('appUser.show.comments', ['appUser' => $appUser])" :active="request()->routeIs('appUser.show.comments')">
+                                <x-nav-link class="text-xl" :href="route('appUser.show.comments', ['appUser' => $appUser])" :active="request()->routeIs('appUser.show.comments')">
                                     {{ __('Comments') }}
                                 </x-nav-link>
                             </nav>
@@ -36,6 +34,7 @@
                     </div>
                 </div>
 
+                <!-- Content -->
                 <div>
                     @if(request()->routeIs('appUser.show'))
 
@@ -61,13 +60,19 @@
                 </div>
             </div>
         </div>
+
+        <!-- User Profile Card -->
         <div class="w-1/4 max-w-xl flex-auto mx-4">
             <div class=" mx-6 pr-6">
                 <div class="bg-white dark:bg-gray-800 overflow-visible shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         
-                        <!-- Username -->
-                        <h1 class="text-center">{{$appUser->username}}</h1>
+                        <!-- Username and Status -->
+                        <div class="text-center">
+                            <h1 class="text-xl">{{$appUser->username}}</h1>
+                            <p class="mt-2">{{$appUser->status}}</p>
+                        </div>
+                        
                         <!-- Follow/Followers -->
                         <hr>
                         <div class="flex">
