@@ -11,11 +11,6 @@ class FollowButton extends Component
     public AppUser $user;
     public bool $isFollowing;
 
-    protected $listeners = [
-        'follow' => '$refresh',
-        'unfollow' => '$refresh'
-    ];
-
     public function mount(AppUser $user) {
         $this->user = $user;
         $this->isFollowing = Auth::user()->appUser->follows($this->user);
