@@ -14,31 +14,6 @@
 
             <x-activities.post :post="$post"/>
 
-
-            {{-- <div class="py-2">
-                <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900 dark:text-gray-100 my-4">
-                        <p class="py-2">
-                            {{'@' . $post->activity->appUser->username . ' | ' . $post->created_at }}
-                        </p>
-                        <a href="{{route('posts.show', ['post' => $post])}}">
-                            <h2 class=" text-2xl py-4">
-                                <strong>
-                                    {{$post->title}}
-                                </strong>
-                            </h2>
-                        </a>
-                        <span>
-
-                            @livewire('like-button', ['activity' => $post->activity])
-                            @livewire('dislike-button', ['activity' => $post->activity])
-                            <button class="px-2">
-                                {{$post->activity->comments->count() . ' comments'}}
-                            </button>
-                        </span>
-                    </div>
-                </div>
-            </div> --}}
             @endforeach
         </section>   
         <section class="w-1/4 h-full max-w-2xl sm:px-6 lg:px-8 py-2">
@@ -58,7 +33,7 @@
                         </x-slot>
                         <x-slot name="content">
                             @foreach ($forum->members as $member)
-                                <x-dropdown-link :href="route('forums.index')">
+                                <x-dropdown-link :href="route('appUser.show', ['appUser' => $member])">
                                     {{$member->username}}
                                 </x-dropdown-link>
                             @endforeach
