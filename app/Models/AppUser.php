@@ -77,7 +77,11 @@ class AppUser extends Model
      * @return HasMany forums.
      */
     public function ownForums() : HasMany {
-        return $this->hasMany(Forum::class);
+        return $this->hasMany(
+            Forum::class,
+            'owner_id',
+            'id'
+    );
     }
 
     /**

@@ -25,7 +25,9 @@ class Forum extends Model
      * @return BelongsTo AppUser
      */
     public function owner() : BelongsTo {
-        return $this->belongsTo(AppUser::class);
+        return $this->belongsTo(
+            AppUser::class,
+        );
     }
 
     /**

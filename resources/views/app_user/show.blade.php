@@ -7,7 +7,7 @@
     </x-slot>
 
     <div class="w-screen py-12 flex">
-        <div class="w-full min-w-4xl max-w-7xl mx-6 flex-auto">
+        <div class="w-full min-w-2xl max-w-7xl mx-6 flex-auto">
             <div class="mx-6 px-6">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -47,13 +47,13 @@
                 </div>
             </div>
         </div>
-        <div class="w-1/4 max-w-xl flex-auto">
+        <div class="w-1/4 max-w-xl flex-auto mx-4">
             <div class=" mx-6 pr-6">
                 <div class="bg-white dark:bg-gray-800 overflow-visible shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         
                         <!-- Username -->
-                        <p class="text-center">{{$appUser->username}}</p>
+                        <h1 class="text-center">{{$appUser->username}}</h1>
                         <!-- Follow/Followers -->
                         <hr>
                         <div class="flex">
@@ -98,21 +98,89 @@
                         </div>
                         
                         <!-- About -->
-                        <hr>
-                        <p class="w-full">{{$appUser->about}}</p>
+                        <div>
+                            <hr>
+                            <h2 class="mt-2 text-center">About</h1>
+                            <p class="w-full my-4">
+                                {{$appUser->about}}
+                            </p>
+                        </div>
                         <!-- Stats and Facts -->
-                        <!-- Owns these Forums -->
-                        <!-- Moderator Of -->
-                        <!-- Member of -->
+                        <div class="mt-2">
+                            <hr>
+                            <div class="w-full">
+                                <div class="text-center mt-2">
+                                    <h2>Level</h2>
+                                    <p>{{$appUser->level}}</p>
+                                </div>
+                                <div class="text-center mt-2">
+                                    <h2>XP Count</h2>
+                                    <p>{{$appUser->xp_count}}</p>
+                                </div>
+                            </div>
+                        </div>
                         
+                        <!-- Owns these Forums -->
+                        @if($appUser->ownForums()->exists())
+                        <div>
+                            <hr>
+                            <h2>Owner of these Forums</h2>
+                            @foreach($appUser->ownForums as $forum)
+                            <div class="w-full my-2">
+                                <a href="{{route('forums.show', ['forum' => $forum])}}">
+                                    {{$forum->name}}
+                                </a>
+                            </div>
+                            @endforeach        
+                        </div>
+                        @endif
+
+                        <!-- Moderator Of -->
+                        @if($appUser->moderatorOf()->exists())
+                        <div>
+                            <hr>
+                            <h2>Moderator of these Forums</h2>
+                            @foreach($appUser->moderatorOf as $forum)
+                            <div class="w-full">
+                                <a href="{{route('forums.show', ['forum' => $forum])}}">
+                                    {{$forum->name}}
+                                </a>
+                            </div>
+                            @endforeach        
+                        </div>
+                        @endif
+                        <!-- Member of -->
+
+                        @if($appUser->memberOf()->exists())
+                        <div>
+                            <hr>
+                            <h2>Member of these Forums</h2>
+                            @foreach($appUser->memberOf as $forum)
+                            <div class="w-full">
+                                <a href="{{route('forums.show', ['forum' => $forum])}}">
+                                    {{$forum->name}}
+                                </a>
+                            </div>
+                            @endforeach        
+                        </div>
+                        @endif
+                        
+                        @auth
+                        @php
+                            $user = Auth::user()->appUser;
+                            $canEdit = $appUser->is($user)
+                        @endphp
+                            @if($canEdit)
+                            <hr>
+                            <form class="text-center mt-4" method="GET" action="{{route('forums.index')}}">
+                                <x-primary-button>Edit Profile</x-primary-button>
+                            </form>
+                            @endif
+                        @endauth
 
                     </div>
                 </div>
             </div>
-            
         </div>
-
     </div>
-
-
 </x-app-layout>
