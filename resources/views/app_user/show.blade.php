@@ -3,10 +3,11 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __($appUser->username) }}
         </h2>
+        <p>{{$appUser->status}}</p>
     </x-slot>
 
     <div class="w-screen py-12 flex">
-        <div class="w-3/4 mx-6 flex-auto">
+        <div class="w-full min-w-4xl max-w-7xl mx-6 flex-auto">
             <div class="mx-6 px-6">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -32,9 +33,21 @@
                         </section>
                     </div>
                 </div>
+
+                <div>
+                    @foreach ($appUser->activities->load('commentable') as $activity)
+                        @if($activity->commentable_type == 'App\Models\Post')
+                            <x-activities.post :post='$activity->commentable'/>
+                        @else
+                            @if ($activity->commentable_type == 'App\Models\Comment') 
+                            <x-activities.comment :comment='$activity->commentable'/>
+                            @endif
+                        @endif
+                    @endforeach
+                </div>
             </div>
         </div>
-        <div class="w-1/4 flex-auto shrink-0 ">
+        <div class="w-1/4 max-w-xl flex-auto">
             <div class=" mx-6 pr-6">
                 <div class="bg-white dark:bg-gray-800 overflow-visible shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -84,8 +97,9 @@
                             </span>
                         </div>
                         
-                        <!-- Status -->
-                        <!-- Description -->
+                        <!-- About -->
+                        <hr>
+                        <p class="w-full">{{$appUser->about}}</p>
                         <!-- Stats and Facts -->
                         <!-- Owns these Forums -->
                         <!-- Moderator Of -->
