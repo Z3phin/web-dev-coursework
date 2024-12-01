@@ -2,24 +2,15 @@
 
 namespace App\View\Components\activities;
 
+use App\Models\Post as ModelsPost;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class post extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct(
-        public string $title = '',
-        public string $username = '',
-        public string $likes = '',
-        public string $dislikes = '',
-        public string $date = ''
-    )
-    {
-        //
+    
+    public function __construct(public ModelsPost $post){
     }
 
     /**

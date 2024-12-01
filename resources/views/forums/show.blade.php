@@ -11,7 +11,11 @@
                 $posts = $forum->posts->load('activity.appUser');
             @endphp
             @foreach ($posts as $post)
-            <div class="py-2">
+
+            <x-activities.post :post="$post"/>
+
+
+            {{-- <div class="py-2">
                 <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100 my-4">
                         <p class="py-2">
@@ -34,7 +38,7 @@
                         </span>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             @endforeach
         </section>   
         <section class="w-1/4 h-full max-w-2xl sm:px-6 lg:px-8 py-2">

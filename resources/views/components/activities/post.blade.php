@@ -1,42 +1,24 @@
-<div style="
-border-radius: 5px; 
-border: 2px solid black;
-margin: 1rem; 
-background:aqua;
-height: 10rem;"
->
-    <span style="margin-left: 0.5rem;">
-        <span>
-            <b>{{'@' . $username}}</b>
-        </span>
-        <span style="margin-left: 1rem">
-            {{$date}}
-        </span>
-    </span>
-    
-    <p><b>{{$title}}</b></p>
-    <p style="margin-left: 0.5rem; margin-right: 0.5rem">{{$slot}}</p>
+<div class="py-2">
+    <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900 dark:text-gray-100 my-4">
+            <p class="py-2">
+                {{'@' . $post->activity->appUser->username . ' | ' . $post->created_at }}
+            </p>
+            <a href="{{route('posts.show', ['post' => $post])}}">
+                <h2 class=" text-2xl py-4">
+                    <strong>
+                        {{$post->title}}
+                    </strong>
+                </h2>
+            </a>
+            <span>
 
-    <button style="
-        border-radius: 5px;
-        background: lightgrey;
-        margin:0.5rem;
-        margin-right:0.25rem;
-        padding:0.5rem;
-    ">
-        <span><b>Likes:</b></span>
-        {{$likes}}
-    </button>
-
-    <button style="
-        border-radius: 5px;
-        background: lightgrey;
-        margin:0.5rem;
-        margin-left: 0.25rem;
-        padding:0.5rem;
-    ">
-        <span><b>Dislikes:</b></span>
-        {{$dislikes}}
-</button>
-
+                @livewire('like-button', ['activity' => $post->activity])
+                @livewire('dislike-button', ['activity' => $post->activity])
+                <button class="px-2">
+                    {{$post->activity->comments->count() . ' comments'}}
+                </button>
+            </span>
+        </div>
+    </div>
 </div>
