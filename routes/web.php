@@ -4,6 +4,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\AppUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,11 +13,14 @@ Route::get('/', function () {
 
 Route::get('/forums', [ForumController::class, 'index'])->name('forums.index');
 
+
 Route::get('/forum/{forum}', [ForumController::class, 'show'])->name('forums.show');
 
 Route::get('/post/{post}', [PostController::class, 'show'])->name('posts.show');
 
 Route::post('/comment', [CommentController::class, 'store'])->middleware('auth')->name('comment');
+
+Route::get('/user/{appUser}', [AppUserController::class, 'show'])->name('appUser.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
