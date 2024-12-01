@@ -25,12 +25,9 @@
                 </div>
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <span>
-                        <button class="px-2">
-                            {{$post->activity->like_count . ' likes'}}
-                        </button>
-                        <button class="px-2">
-                            {{$post->activity->dislike_count . ' dislikes'}}
-                        </button>
+
+                        @livewire('like-button', ['activity' => $post->activity])
+                        @livewire('dislike-button', ['activity' => $post->activity])
                         <button class="px-2">
                             {{$post->activity->comments->count() . ' comments'}}
                         </button>
@@ -84,12 +81,8 @@
                             {{$comment->activity->body}}
                         </p>    
                         <span>
-                            <button class="px-2">
-                                {{$comment->activity->like_count . ' likes'}}
-                            </button>
-                            <button class="px-2">
-                                {{$comment->activity->dislike_count . ' dislikes'}}
-                            </button>
+                            @livewire('like-button', ['activity' => $comment->activity])
+                            @livewire('dislike-button', ['activity' => $comment->activity])
                             <button class="px-2">
                                 {{$comment->activity->comments->count() . ' comments'}}
                             </button>
