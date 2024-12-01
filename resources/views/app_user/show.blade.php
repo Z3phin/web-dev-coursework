@@ -21,29 +21,43 @@
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <section>
                             <h1>Activity Feed</h1>
-                            <a href="{{route('appUser.show', ['appUser' => $appUser])}}">
-                                Overview
-                            </a>
-                            <a href="{{route('appUser.show', ['appUser' => $appUser])}}">
-                                Posts
-                            </a>
-                            <a href="{{route('appUser.show', ['appUser' => $appUser])}}">
-                                Comments
-                            </a>
+                            <nav>
+                                <x-nav-link :href="route('appUser.show', ['appUser' => $appUser])" :active="request()->routeIs('appUser.show')">
+                                    {{ __('Overview') }}
+                                </x-nav-link>
+                                <x-nav-link :href="route('appUser.show.posts', ['appUser' => $appUser])" :active="request()->routeIs('appUser.show.posts')">
+                                    {{ __('Posts') }}
+                                </x-nav-link>
+                                <x-nav-link :href="route('appUser.show.comments', ['appUser' => $appUser])" :active="request()->routeIs('appUser.show.comments')">
+                                    {{ __('Comments') }}
+                                </x-nav-link>
+                            </nav>
                         </section>
                     </div>
                 </div>
 
                 <div>
-                    @foreach ($appUser->activities->load('commentable') as $activity)
-                        @if($activity->commentable_type == 'App\Models\Post')
-                            <x-activities.post :post='$activity->commentable'/>
-                        @else
-                            @if ($activity->commentable_type == 'App\Models\Comment') 
-                            <x-activities.comment :comment='$activity->commentable'/>
+                    @if(request()->routeIs('appUser.show'))
+
+                        @foreach ($appUser->activities->load('commentable') as $activity)
+                            @if($activity->commentable_type == 'App\Models\Post')
+                                <x-activities.post :post='$activity->commentable'/>
+                            @elseif ($activity->commentable_type == 'App\Models\Comment') 
+                                <x-activities.comment :comment='$activity->commentable'/>
                             @endif
-                        @endif
-                    @endforeach
+                        @endforeach
+
+                    @elseif(request()->routeIs('appUser.show.posts'))
+                        @foreach($appUser->posts->load('activity') as $post )
+                            <x-activities.post :post='$post'/>
+                        @endforeach
+
+                    @elseif(request()->routeIs('appUser.show.comments'))
+                        @foreach($appUser->comments->load('activity') as $comment )
+                            <x-activities.comment :comment='$comment'/>
+                        @endforeach
+                    @endif
+                    
                 </div>
             </div>
         </div>

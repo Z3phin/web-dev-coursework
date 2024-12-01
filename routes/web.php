@@ -21,6 +21,9 @@ Route::get('/post/{post}', [PostController::class, 'show'])->name('posts.show');
 Route::post('/comment', [CommentController::class, 'store'])->middleware('auth')->name('comment');
 
 Route::get('/user/{appUser}', [AppUserController::class, 'show'])->name('appUser.show');
+Route::get('/user/{appUser}/comments', [AppUserController::class, 'show'])->name('appUser.show.comments');
+Route::get('/user/{appUser}/posts', [AppUserController::class, 'show'])->name('appUser.show.posts');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
