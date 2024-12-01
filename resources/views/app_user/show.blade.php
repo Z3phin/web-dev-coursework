@@ -72,6 +72,24 @@
                             <h1 class="text-xl">{{$appUser->username}}</h1>
                             <p class="mt-2">{{$appUser->status}}</p>
                         </div>
+
+
+                        <!-- Follow Button -->
+                        @auth
+                            @php
+                                $user = Auth::user()->appUser;
+                                $pageBelongsToUser = $appUser->is($user);
+                                $followsUser = $appUser->follows($user);
+                            @endphp
+
+                            @if(!$pageBelongsToUser)
+                                <div class="text-center">
+                                    @livewire('follow-button', ['user' => $appUser])
+                                </div>
+                            @endif
+                            
+                        @endauth
+                        <div></div>
                         
                         <!-- Follow/Followers -->
                         <hr>
@@ -185,11 +203,7 @@
                         @endif
                         
                         @auth
-                        @php
-                            $user = Auth::user()->appUser;
-                            $canEdit = $appUser->is($user)
-                        @endphp
-                            @if($canEdit)
+                            @if($pageBelongsToUser)
                             <hr>
                             <form class="text-center mt-4" method="GET" action="{{route('forums.index')}}">
                                 <x-primary-button>Edit Profile</x-primary-button>

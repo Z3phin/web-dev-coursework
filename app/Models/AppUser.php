@@ -143,6 +143,10 @@ class AppUser extends Model
         );
     }
 
+    public function follows(AppUser $user) {
+        return $this->following->contains($user);
+    }
+
     /**
      * Returns the users that follow this user.
      * 
