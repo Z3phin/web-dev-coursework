@@ -2,7 +2,14 @@
     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900 dark:text-gray-100 m-4">
             <p class="py-2">
-                {{'@' . $comment->activity->appUser->username . ' | ' . $comment->created_at }}
+                @php
+                    $user = $comment->activity->appUser
+                @endphp
+                <a href="{{route('appUser.show', ['appUser' => $user])}}">{{'@' . $user->username}}</a>
+                <span>
+                    {{' | ' . $comment->created_at }}
+                </span>
+                
             </p>
             <p>
                 {{$comment->activity->body}}
