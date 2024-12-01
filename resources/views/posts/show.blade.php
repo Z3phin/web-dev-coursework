@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class="text-gray-800 dark:text-gray-200">
             <div>
-                <a href="{{route('forums.show', ['id' => $post->forum_id])}}">{{'← ' . $post->forum->name}}</a>
+                <a href="{{route('forums.show', ['forum' => $post->forum])}}">{{'← ' . $post->forum->name}}</a>
             </div>
             <div>
-                <a href="{{route('forums.show', ['id' => $post->forum_id])}}" 
+                <a href="{{route('forums.show', ['forum' => $post->forum])}}" 
                     >
                     {{'@' . $post->activity->appUser->username}}
                 </a>

@@ -25,9 +25,12 @@
                             </h2>
                         </a>
                         <span>
-                            <button class="px-2">
+
+                            @livewire('like-button', ['activity' => $post->activity])
+                            
+                            {{-- <button class="px-2">
                                 {{$post->activity->like_count . ' likes'}}
-                            </button>
+                            </button> --}}
                             <button class="px-2">
                                 {{$post->activity->dislike_count . ' dislikes'}}
                             </button>
