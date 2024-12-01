@@ -27,13 +27,7 @@
                         <span>
 
                             @livewire('like-button', ['activity' => $post->activity])
-                            
-                            {{-- <button class="px-2">
-                                {{$post->activity->like_count . ' likes'}}
-                            </button> --}}
-                            <button class="px-2">
-                                {{$post->activity->dislike_count . ' dislikes'}}
-                            </button>
+                            @livewire('dislike-button', ['activity' => $post->activity])
                             <button class="px-2">
                                 {{$post->activity->comments->count() . ' comments'}}
                             </button>
