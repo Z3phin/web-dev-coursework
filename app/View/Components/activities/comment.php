@@ -13,14 +13,8 @@ class comment extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public string $username = 'unknown',
-        public string $likes = '0',
-        public string $dislikes = '0',
-        public string $date = ''
-    )
-    {
-        
-    }
+        public ModelsComment $comment,
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

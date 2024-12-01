@@ -9,7 +9,9 @@ use Illuminate\View\Component;
 
 class post extends Component
 {
-    
+    /**
+     * Create a new component instance.
+     */
     public function __construct(public ModelsPost $post){
     }
 
