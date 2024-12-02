@@ -205,7 +205,7 @@
                         @auth
                             @if($pageBelongsToUser)
                             <hr>
-                            <form class="text-center mt-4" method="GET" action="{{route('forums.index')}}">
+                            <form class="text-center mt-4" method="GET" action="{{route('appUser.edit', ['appUser' => $appUser])}}">
                                 <x-primary-button>Edit Profile</x-primary-button>
                             </form>
                             @endif
