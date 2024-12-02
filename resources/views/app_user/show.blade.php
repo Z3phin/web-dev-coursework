@@ -206,7 +206,12 @@
                             @if($pageBelongsToUser)
                             <hr>
                             <form class="text-center mt-4" method="GET" action="{{route('appUser.edit', ['appUser' => $appUser])}}">
+                                @csrf
                                 <x-primary-button>Edit Profile</x-primary-button>
+                            </form>
+                            <form class="text-center mt-4" method="POST" action="{{route('logout')}}">
+                                @csrf
+                                <x-primary-button>Logout</x-primary-button>
                             </form>
                             @endif
                         @endauth
