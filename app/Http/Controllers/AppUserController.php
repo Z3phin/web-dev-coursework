@@ -63,8 +63,23 @@ class AppUserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, AppUser $appUser)
     {
-        //
+        if (Auth::user()->appUser != $appUser) {
+            abort(403);
+        }
+
+        
+
+        $user = $request->user();
+
+        Auth::logout();
+        
+        $user->delete();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect(route('forums.index'));
     }
 }

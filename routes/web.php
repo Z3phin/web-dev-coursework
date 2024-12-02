@@ -24,6 +24,7 @@ Route::get('/user/{appUser}/comments', [AppUserController::class, 'show'])->name
 Route::get('/user/{appUser}/posts', [AppUserController::class, 'show'])->name('appUser.show.posts');
 Route::get('/user/{appUser}/edit', [AppUserController::class, 'edit'])->middleware('auth')->name('appUser.edit');
 Route::patch('/user/{appUser}/update', [AppUserController::class, 'update'])->middleware('auth')->name('appUser.update');
+Route::delete('/user/{appUser}/destroy', [AppUserController::class, 'destroy'])->middleware('auth')->name('appUser.destroy');
 
 
 Route::get('/dashboard', function () {

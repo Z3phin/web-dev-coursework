@@ -62,12 +62,20 @@
             </div>
 
 
-                <div class="flex items-center justify-end mt-4">
+                <div class="flex items-center justify-center mt-4">
                     <!-- Submit -->
                     <x-primary-button class="ms-4">
                         {{ __('Save') }}
                     </x-primary-button>
                 </div>
+            </form>
+            <form method="POST" action="{{route('appUser.destroy', ['appUser' => $appUser])}}" >
+                @csrf
+                @method('DELETE')
+                
+                <x-danger-button>
+                    delete profile
+                </x-danger-button>
             </form>
         </div>
     </div>
