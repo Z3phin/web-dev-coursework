@@ -56,7 +56,7 @@ class AppUserController extends Controller
         $appUser->about = ($request->about == null) ? '': $request->about;
         $appUser->save();
 
-        return view('app_user.show', ['appUser' => $appUser]); 
+        return redirect(route('appUser.show', ['appUser' => $appUser]));
     
     }
 
