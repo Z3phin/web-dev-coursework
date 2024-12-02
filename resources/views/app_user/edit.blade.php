@@ -72,10 +72,11 @@
             <form method="POST" action="{{route('appUser.destroy', ['appUser' => $appUser])}}" >
                 @csrf
                 @method('DELETE')
-                
-                <x-danger-button>
-                    delete profile
-                </x-danger-button>
+                <div class="flex items-center justify-center mt-4">
+                    <x-danger-button class="ms-4">
+                        delete profile
+                    </x-danger-button>
+                </div>
             </form>
         </div>
     </div>
