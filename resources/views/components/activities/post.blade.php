@@ -3,7 +3,7 @@
         <div class="p-6 text-gray-900 dark:text-gray-100 my-4">
             <p class="py-2">
                 @php
-                    $user = $post->activity->appUser
+                    $user = $post->activity->appUser;
                 @endphp
                 <a href="{{route('appUser.show', ['appUser' => $user])}}">{{'@' . $user->username}}</a>
                 <span>

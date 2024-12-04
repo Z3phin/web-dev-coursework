@@ -69,8 +69,6 @@ class AppUserController extends Controller
             abort(403);
         }
 
-        
-
         $user = $request->user();
 
         Auth::logout();

@@ -3,9 +3,13 @@
         <div class="p-6 text-gray-900 dark:text-gray-100 m-4">
             <p class="py-2">
                 @php
-                    $user = $comment->activity->appUser
+                    $user = $comment->activity->appUser;
                 @endphp
+                @if($user)
                 <a href="{{route('appUser.show', ['appUser' => $user])}}">{{'@' . $user->username}}</a>
+                @else
+                <span class="line-through"><i>DELETED</i></span>
+                @endif
                 <span>
                     {{' | ' . $comment->created_at }}
                 </span>
