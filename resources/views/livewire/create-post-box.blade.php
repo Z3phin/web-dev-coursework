@@ -5,18 +5,18 @@
     </x-primary-button>
     @else
     <section class="bg-white dark:bg-gray-800 border border-solid border-gray-800 dark:border-white shadow-sm sm:rounded-lg">
-        <form action="">
+        <form wire:submit="createPost">
             @csrf
             <!-- Title -->
             <div class="px-2">
                 <x-input-label for="title" :value="__('Title')" class="mt-2"/>
-                <x-text-input class="w-3/4 mt-2" id="title" name="title" required autofocus/>
+                <x-text-input class="w-3/4 mt-2" id="title" name="title" wire:model='title' required autofocus/>
                 <x-input-error :messages="$errors->get('title')" class="mt-2" />
             </div>
             
             <!-- Body -->
             <div class="px-2">
-                <x-text-area class="w-full mt-2" id="body" name="body" required autofocus/>
+                <x-text-area class="w-full mt-2" id="body" name="body" wire:model="body" required autofocus/>
                 <x-input-error :messages="$errors->get('body')" class="mt-2" />
             </div>     
 

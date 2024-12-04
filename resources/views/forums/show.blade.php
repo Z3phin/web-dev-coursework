@@ -7,7 +7,8 @@
 
     <section class="flex flex-row h-full py-4">
         <section class="w-3/4 max-w-40xl mx-auto sm:px-6 lg:px-8 flex-auto">
-            @livewire('create-post-box')
+            @livewire('posts', ['forum' => $forum])
+            {{-- @livewire('create-post-box')
             <section>
                 @php
                     $posts = $forum->posts->load('activity.appUser');
@@ -17,7 +18,7 @@
                 <x-activities.post :post="$post"/>
     
                 @endforeach
-            </section>  
+            </section>   --}}
         </section> 
         <section class="w-1/4 h-full max-w-2xl sm:px-6 lg:px-8 py-2 flex-auto">
             <div class="bg-white dark:bg-gray-800 overflow-visible shadow-sm sm:rounded-lg">
