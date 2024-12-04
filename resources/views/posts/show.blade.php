@@ -40,32 +40,7 @@
             <hr>
         </div>
 
-        @auth
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-4">
-
-            <!-- Adding a Comment -->
-            <form method="POST" action="{{route('comment')}}">
-                @csrf
-                <div>
-                    <input type="hidden" id="activity_id" name="activity_id" value="{{$post->activity->id}}" >
-                    <x-input-label for="body" :value="__('Comment')"/>
-                    <x-text-area id="body" name="body" cols="1" rows="1" class="block mt-1 w-full" :value="old('body')" autofocus/>
-
-                </div>
-
-                <div class="py-2">
-                    <x-primary-button >
-                        {{ __('Post') }}
-                    </x-primary-button>
-                </div>
-                
-            </form>
-        </div>
-        @else
-        <div class="text-gray-900 dark:text-gray-100 m-4">
-            <a href="{{route('login')}}">Sign in to comment on this post.</a>
-        </div>
-        @endauth
+        @livewire('create-comment', ['parentActivity' => $post->activity])
 
         @php
             $comments = $post->comments->load('activity.appUser');
