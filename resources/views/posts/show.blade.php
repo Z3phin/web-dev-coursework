@@ -18,7 +18,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <section class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{$post->activity->body}}
@@ -34,23 +34,25 @@
                     </span>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="py-4 max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <hr>
-        </div>
+        <section>
+            <div class="py-4 max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <hr>
+            </div>
 
-        @livewire('create-comment', ['parentActivity' => $post->activity])
+            @livewire('create-comment', ['parentActivity' => $post->activity])
 
-        @php
-            $comments = $post->comments->load('activity.appUser');
-        @endphp
-        @forelse($comments as $comment)
+            @php
+                $comments = $post->comments->load('activity.appUser');
+            @endphp
+            @forelse($comments as $comment)
 
-        <x-activities.comment :comment="$comment"/>
-        @empty
-            <p>No comments here yet. Do you have something to say?</p>
-        @endforelse
+                @livewire('commentItem', ['comment' => $comment])
+            @empty
+                <p>No comments here yet. Do you have something to say?</p>
+            @endforelse
+        </section>
     </div>
 
     
