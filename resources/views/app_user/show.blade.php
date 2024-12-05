@@ -40,20 +40,20 @@
 
                         @foreach ($appUser->activities->load('commentable') as $activity)
                             @if($activity->commentable_type == 'App\Models\Post')
-                                <x-activities.post :post='$activity->commentable'/>
+                                @livewire('post-item', ['post' => $activity->commentable])
                             @elseif ($activity->commentable_type == 'App\Models\Comment') 
-                                <x-activities.comment :comment='$activity->commentable'/>
+                                @livewire('comment-item', ['comment' => $activity->commentable])
                             @endif
                         @endforeach
 
                     @elseif(request()->routeIs('appUser.show.posts'))
                         @foreach($appUser->posts->load('activity') as $post )
-                            <x-activities.post :post='$post'/>
+                            @livewire('post-item', ['post' => $post])
                         @endforeach
 
                     @elseif(request()->routeIs('appUser.show.comments'))
                         @foreach($appUser->comments->load('activity') as $comment )
-                            <x-activities.comment :comment='$comment'/>
+                            @livewire('comment-item', ['comment' => $comment])
                         @endforeach
                     @endif
                     
