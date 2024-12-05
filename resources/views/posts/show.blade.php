@@ -41,17 +41,8 @@
                 <hr>
             </div>
 
-            @livewire('create-comment', ['parentActivity' => $post->activity])
+            @livewire('comments', ['activity' => $post->activity])
 
-            @php
-                $comments = $post->comments->load('activity.appUser');
-            @endphp
-            @forelse($comments as $comment)
-
-                @livewire('commentItem', ['comment' => $comment])
-            @empty
-                <p>No comments here yet. Do you have something to say?</p>
-            @endforelse
         </section>
     </div>
 

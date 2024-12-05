@@ -12,14 +12,14 @@ class CreateComment extends Component
 {
 
     public bool $isHidden;
-    public Activity $parentActivity;
+    public Activity $activity;
     public AppUser $user;
     public string $body;
 
-    public function mount(Activity $parentActivity) {
+    public function mount(Activity $activity) {
         $this->user = Auth::user()->appUser;
         $this->isHidden = true;  
-        $this->parentActivity = $parentActivity;
+        $this->activity = $activity;
         $this->body = '';
 
     }
@@ -34,7 +34,7 @@ class CreateComment extends Component
         ]);
 
         $comment = new Comment();
-        $comment->parent_activity_id = $this->parentActivity->id;
+        $comment->parent_activity_id = $this->activity->id;
         $comment->save();
         
         $activity = new Activity();
@@ -46,7 +46,7 @@ class CreateComment extends Component
         $activity->dislike_count = 0;
         $activity->save();
 
-        $this->dispatch('comment-created', postId: $comment->id);
+        $this->dispatch('comment-created', commentId: $comment->id);
 
         $this->resetForm();
         $this->isHidden = true;
