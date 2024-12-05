@@ -24,7 +24,7 @@
         </div>
     </div>
     @endforeach
-    <div>
+    <div class="mx-auto">
         {{$forums->links()}}
     </div>
 </x-app-layout>
