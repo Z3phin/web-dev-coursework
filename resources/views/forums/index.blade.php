@@ -24,4 +24,7 @@
         </div>
     </div>
     @endforeach
+    <div>
+        {{$forums->links()}}
+    </div>
 </x-app-layout>

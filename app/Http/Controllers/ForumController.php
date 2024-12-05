@@ -12,7 +12,7 @@ class ForumController extends Controller
      */
     public function index()
     {
-        $forums = Forum::all();
+        $forums = Forum::paginate(10);
         return view('forums.index', ['forums' => $forums]);
     }
 
@@ -37,7 +37,6 @@ class ForumController extends Controller
      */
     public function show(Forum $forum)
     {
-        // $forum = Forum::findOrFail($id);
         return view('forums.show', ['forum' => $forum]);
     }
 
