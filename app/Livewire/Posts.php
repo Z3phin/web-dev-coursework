@@ -7,9 +7,7 @@ use App\Models\Post;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use Livewire\Attributes\On;
-
-// Credit to Nihar Ranjan Das (https://www.nihardaily.com/10-how-to-create-a-comment-system-using-laravel-livewire-part-1)
-// for code inspiration
+use Livewire\WithPagination;
 
 class Posts extends Component
 {
@@ -20,6 +18,7 @@ class Posts extends Component
     public function mount(Forum $forum) {
         $this->forum = $forum;
         $this->posts = $this->forum->posts->load('activity');
+        $this->posts = $this->posts->sortByDesc('created_at');
     }
 
     #[On('post-created')]
