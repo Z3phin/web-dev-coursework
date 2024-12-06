@@ -24,6 +24,7 @@ class JoinButton extends Component
         if (!$this->isFollowing) {
             $this->user->memberOf()->attach($this->forum->id,  ['joined_at' => now(), 'role' => 'member']);
             $this->toggleIsFollowing();
+            $this->dispatch('join-forum');
         }
     }
 
@@ -31,6 +32,7 @@ class JoinButton extends Component
         if ($this->isFollowing) {
             $this->user->memberOf()->detach($this->forum->id);
             $this->toggleIsFollowing();
+            $this->dispatch('join-forum');
         }
     }
 

@@ -1,6 +1,8 @@
 <section class="w-3/4 max-w-40xl mx-auto sm:px-6 lg:px-8 flex-auto">
     @auth
-        @livewire('create-post-box', ['forum' => $forum])
+        @if($canPost)
+            @livewire('create-post-box', ['forum' => $forum])
+        @endif
     @endauth
     <div>
         <hr>
