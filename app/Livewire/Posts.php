@@ -42,11 +42,12 @@ class Posts extends Component
         $this->canPost = Auth::user()->appUser->memberOf()->where('forum_id', '=', $this->forum->id)->exists();
     }
 
-    // public function postDeleted(int $deletedId) {
-    //     $this->posts = $this->posts->reject(function ($post, int $key) use ($deletedId) {
-    //         return $post->id == $deletedId;
-    //     });
-    // }
+    #[On('post-deleted')]
+    public function postDeleted(int $deletedId) {
+        $this->posts = $this->posts->reject(function ($post, int $key) use ($deletedId) {
+            return $post->id == $deletedId;
+        });
+    }
 
     public function render()
     {
