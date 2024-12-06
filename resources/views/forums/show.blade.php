@@ -14,9 +14,10 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100 my-4">
                     <h2 class="text-center">{{$forum->name}}</h2>
                     <hr>
-                    @if($forum->owner)
-                        <p><{{$forum->owner->username}}</p>
-                    @endif
+                    <div class ="py-2 text-center">
+                        @livewire('join-button', ['forum' => $forum], key($forum->id))
+                    </div>
+                    <hr>
                     <p class="py-2">{{$forum->description}}</p>
                     <x-dropdown>
                         <x-slot name="trigger">

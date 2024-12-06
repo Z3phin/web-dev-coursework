@@ -7,8 +7,9 @@ use App\Models\AppUser;
 use App\Models\Forum;
 use App\Models\Post;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Illuminate\Support\Facades\Auth;
-use Psy\CodeCleaner\AssignThisVariablePass;
+
 
 class CreatePostBox extends Component
 {
